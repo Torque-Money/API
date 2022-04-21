@@ -12,8 +12,13 @@ export async function getVaultTVL(vault: string) {
     let tvl = 0;
 
     const tokenCount = await contractVault.tokenCount();
+
     for (let i = 0; i < tokenCount; i++) {
         const token = await contractVault.tokenByIndex(i);
+
+        console.log(token);
+
+        // **** Yikes! We need to lowercase this one - we need to do this with all of the addresses
 
         const tokenAmount = await contractVault.approxBalance(token);
         const decimals = tokenData[token].decimals;

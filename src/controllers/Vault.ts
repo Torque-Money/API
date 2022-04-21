@@ -7,7 +7,7 @@ export async function HandleVaultTVL(req: Request, res: Response) {
 
     const tvl = await getVaultTVL(vault);
 
-    res.send(tvl);
+    res.send(tvl.toString());
 }
 
 export async function HandleVaultAPY(req: Request, res: Response) {
