@@ -2,7 +2,7 @@ import { ROUND_NUMBER } from "../utils/constants";
 import getStrategyAPY from "./apy";
 import { getPrice } from "./prices";
 import tokenData from "../../data/token";
-import { parseBigNumber } from "../utils/parse";
+import { parseAddress, parseBigNumber } from "../utils/parse";
 import { loadContractTorqueVaultV1 } from "../utils/ethers";
 
 // Get the TVL of a particular vault
@@ -14,7 +14,7 @@ export async function getVaultTVL(vault: string) {
     const tokenCount = await contractVault.tokenCount();
 
     for (let i = 0; i < tokenCount; i++) {
-        const token = (await contractVault.tokenByIndex(i)).toLowerCase();
+        const token = parseAddress(await contractVault.tokenByIndex(i));
 
         const tokenAmount = await contractVault.approxBalance(token);
         const decimals = tokenData[token].decimals;
@@ -31,7 +31,7 @@ export async function getVaultTVL(vault: string) {
 export async function getVaultAPY(vault: string) {
     const contractVault = loadContractTorqueVaultV1(vault);
 
-    const strategy = (await contractVault.getStrategy()).toLowerCase;
+    const strategy = parseAddress(await contractVault.getStrategy());
 
     return getStrategyAPY(strategy);
 }
