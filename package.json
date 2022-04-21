@@ -1,7 +1,9 @@
 {
     "name": "api",
     "scripts": {
-        "dev": "nodemon src/index.ts"
+        "dev": "nodemon src/index.ts",
+        "build": "tsc",
+        "start": "node dist/src/index.js"
     },
     "dependencies": {
         "axios": "^0.26.1",
