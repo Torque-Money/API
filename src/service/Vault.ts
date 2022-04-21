@@ -1,6 +1,6 @@
 import { ROUND_NUMBER } from "../utils/constants";
 import { loadContractVault } from "../utils/ethers";
-import getAPY from "./apy";
+import getStrategyAPY from "./apy";
 import { getPrice } from "./prices";
 import tokenData from "../../data/token";
 import { parseBigNumber } from "../utils/parse";
@@ -32,7 +32,7 @@ export async function getVaultAPY(vault: string) {
 
     const strategy = await contractVault.getStrategy();
 
-    return getAPY(strategy);
+    return getStrategyAPY(strategy);
 }
 
 // Get the fee for a particular vault
