@@ -1,12 +1,12 @@
 # Build the files
-FROM node:latest as build
+FROM node:18-alpine as build
 WORKDIR /usr/app
 COPY . .
 RUN npm install
 RUN npm run build
 
 # Copy the built files to the production environment
-FROM node:latest
+FROM node:18-alpine
 WORKDIR /usr/app
 COPY package*.json ./
 RUN npm install --production
