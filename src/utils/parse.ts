@@ -2,7 +2,9 @@ import { ethers } from "ethers";
 
 import { ROUND_NUMBER } from "./constants";
 
-export function parsePercent(raw: string) {}
+export function parsePercent(raw: number) {
+    return raw.toFixed(2);
+}
 
 export function parseNumber(raw: number) {
     if (raw > 1e9) return raw / 1e9 + "B";
