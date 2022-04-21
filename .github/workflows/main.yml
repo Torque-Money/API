@@ -17,7 +17,7 @@ jobs:
                   host: ${{secrets.SSH_HOST}}
                   key: ${{secrets.SSH_KEY}}
                   script: |
-                      cd Chainlink-VRE-Adapter/src
+                      cd API/
                       docker-compose down
                       git pull
                       bash install.sh
