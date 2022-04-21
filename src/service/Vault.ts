@@ -12,6 +12,7 @@ export async function getVaultTVL(vault: string) {
     const tokenCount = await contractVault.tokenCount();
     for (let i = 0; i < tokenCount; i++) {
         const token = await contractVault.tokenByIndex(i);
+        // **** I need a way of getting the decimals for this so that I can then go and parse the result
         tvl += await getPrice(token);
     }
 
