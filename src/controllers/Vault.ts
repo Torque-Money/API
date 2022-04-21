@@ -3,7 +3,7 @@ import { Request, Response } from "express";
 import { getVaultAPY, getVaultFee, getVaultTVL } from "../service/Vault";
 
 export async function HandleVaultTVL(req: Request, res: Response) {
-    const vault = req.params.vault;
+    const vault = req.params.vault.toLowerCase();
 
     const tvl = await getVaultTVL(vault);
 
@@ -11,7 +11,7 @@ export async function HandleVaultTVL(req: Request, res: Response) {
 }
 
 export async function HandleVaultAPY(req: Request, res: Response) {
-    const vault = req.params.vault;
+    const vault = req.params.vault.toLowerCase();
 
     const apy = await getVaultAPY(vault);
 
@@ -19,7 +19,7 @@ export async function HandleVaultAPY(req: Request, res: Response) {
 }
 
 export async function HandleVaultFee(req: Request, res: Response) {
-    const vault = req.params.vault;
+    const vault = req.params.vault.toLowerCase();
 
     const fee = await getVaultFee(vault);
 

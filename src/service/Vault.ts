@@ -31,7 +31,7 @@ export async function getVaultTVL(vault: string) {
 export async function getVaultAPY(vault: string) {
     const contractVault = loadContractTorqueVaultV1(vault);
 
-    const strategy = await contractVault.getStrategy();
+    const strategy = (await contractVault.getStrategy()).toLowerCase;
 
     return getStrategyAPY(strategy);
 }

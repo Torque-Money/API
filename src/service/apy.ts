@@ -15,6 +15,6 @@ async function routeBeefyAPY(name: string) {
     return data[name] * 100;
 }
 
-export default async function getStrategyAPY(address: string) {
-    return await strategies[address]();
+export default async function getStrategyAPY(strategy: string) {
+    return await strategies[strategy]();
 }
