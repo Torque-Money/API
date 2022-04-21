@@ -20,5 +20,4 @@ jobs:
                       cd API/
                       docker-compose down
                       git pull
-                      bash install.sh
                       docker-compose up --build -d
