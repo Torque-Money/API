@@ -1,8 +1,12 @@
 import express from "express";
 
+import Vault from "./routes/Vault";
+import VaultUser from "./routes/VaultUser";
+
 const app = express();
 
-// **** How do I make handlers and routes and stuff again ?
+app.use("/vault", Vault);
+app.use("/vaultUser", VaultUser);
 
 const PORT = process.env.PORT || 7000;
 
