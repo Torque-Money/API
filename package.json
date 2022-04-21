@@ -2,5 +2,11 @@
     "name": "api",
     "scripts": {
         "test": "echo \"Error: no test specified\" && exit 1"
+    },
+    "dependencies": {
+        "express": "^4.17.3"
+    },
+    "devDependencies": {
+        "typescript": "^4.6.3"
     }
 }
