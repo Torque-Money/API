@@ -5,7 +5,8 @@ export default function routeWrapper(fn: (req: Request, res: Response) => Promis
         try {
             await fn(req, res);
         } catch (e) {
-            res.sendStatus(500);
+            console.log(e);
+            res.status(500).send(e);
         }
     };
 }
