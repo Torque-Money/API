@@ -17,5 +17,5 @@ services:
         volumes:
             - ./nginx.conf:/etc/nginx/nginx.conf
         depends_on:
-            - vre
+            - api
         restart: always
