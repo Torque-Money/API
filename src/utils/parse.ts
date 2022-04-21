@@ -2,7 +2,7 @@ import { ethers } from "ethers";
 
 import { ROUND_NUMBER } from "./constants";
 
-export function parsePercent(raw: number) {
+export function formatNumber(raw: number) {
     return raw.toFixed(2);
 }
 
