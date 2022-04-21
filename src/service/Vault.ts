@@ -1,8 +1,21 @@
 import { loadContractVault } from "../utils/ethers";
 import getAPY from "./apy";
+import { getPrice } from "./prices";
 
 // Get the TVL of a particular vault
-export async function getVaultTVL(vault: string) {}
+export async function getVaultTVL(vault: string) {
+    const contractVault = loadContractVault(vault);
+
+    let tvl = 0;
+
+    const tokenCount = await contractVault.tokenCount();
+    for (let i = 0; i < tokenCount; i++) {
+        const token = await contractVault.tokenByIndex(i);
+        tvl += await getPrice(token);
+    }
+
+    return tvl;
+}
 
 // Get the APY of a particular vault
 export async function getVaultAPY(vault: string) {
