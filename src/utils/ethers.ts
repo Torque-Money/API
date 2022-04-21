@@ -1,3 +1,5 @@
+import { ethers } from "ethers";
+
 import IStrategy from "../../abi/IStrategy.json";
 import IVaultV1 from "../../abi/IVaultV1.json";
 
