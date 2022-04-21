@@ -1,13 +1,13 @@
 import { ROUND_NUMBER } from "../utils/constants";
-import { loadContractVault } from "../utils/ethers";
 import getStrategyAPY from "./apy";
 import { getPrice } from "./prices";
 import tokenData from "../../data/token";
 import { parseBigNumber } from "../utils/parse";
+import { loadContractTorqueVaultV1 } from "../utils/ethers";
 
 // Get the TVL of a particular vault
 export async function getVaultTVL(vault: string) {
-    const contractVault = loadContractVault(vault);
+    const contractVault = loadContractTorqueVaultV1(vault);
 
     let tvl = 0;
 
@@ -28,7 +28,7 @@ export async function getVaultTVL(vault: string) {
 
 // Get the APY of a particular vault
 export async function getVaultAPY(vault: string) {
-    const contractVault = loadContractVault(vault);
+    const contractVault = loadContractTorqueVaultV1(vault);
 
     const strategy = await contractVault.getStrategy();
 
@@ -37,11 +37,17 @@ export async function getVaultAPY(vault: string) {
 
 // Get the fee for a particular vault
 export async function getVaultFee(vault: string) {
-    const contractVault = loadContractVault(vault);
+    const contractVault = loadContractTorqueVaultV1(vault);
+
+    console.log("Got vault");
 
     let [percent, denominator] = await contractVault.feePercent();
 
+    console.log("Got percent");
+
     const fee = percent.mul(ROUND_NUMBER).div(denominator);
+
+    console.log("Fee");
 
     return fee.toNumber() / ROUND_NUMBER;
 }

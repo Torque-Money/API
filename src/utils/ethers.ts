@@ -1,18 +1,18 @@
 import { ethers } from "ethers";
 
-import IStrategy from "../../abi/IStrategy.json";
-import IVaultV1 from "../../abi/IVaultV1.json";
+import BeefyLPStrategy from "../../abi/BeefyLPStrategy.json";
+import TorqueVaultV1 from "../../abi/TorqueVaultV1.json";
 
 const RPC_URL = "https://rpc.ftm.tools/";
 
-export function loadContractVault(vault: string) {
+export function loadContractTorqueVaultV1(vault: string) {
     const provider = new ethers.providers.JsonRpcProvider(RPC_URL);
 
-    return new ethers.Contract(vault, IStrategy.abi, provider);
+    return new ethers.Contract(vault, TorqueVaultV1.abi, provider);
 }
 
-export function loadContractStrategy(strategy: string) {
+export function loadContractBeefyLPStrategy(strategy: string) {
     const provider = new ethers.providers.JsonRpcProvider(RPC_URL);
 
-    return new ethers.Contract(strategy, IVaultV1.abi, provider);
+    return new ethers.Contract(strategy, BeefyLPStrategy.abi, provider);
 }
