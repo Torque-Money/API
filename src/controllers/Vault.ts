@@ -2,6 +2,9 @@ import { Request, Response } from "express";
 
 import { getVaultAPY, getVaultFee, getVaultTVL } from "../service/Vault";
 
+// **** We need to run some parsers on these
+// **** We also need to run the parser for the bignumber returned by the contracts
+
 export async function HandleVaultTVL(req: Request, res: Response) {
     const vault = req.params.vault;
 
