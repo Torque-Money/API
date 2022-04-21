@@ -1,3 +1,4 @@
+import { ROUND_NUMBER } from "../utils/constants";
 import { loadContractVault } from "../utils/ethers";
 import getAPY from "./apy";
 import { getPrice } from "./prices";
@@ -27,4 +28,12 @@ export async function getVaultAPY(vault: string) {
 }
 
 // Get the fee for a particular vault
-export async function getVaultFee(vault: string) {}
+export async function getVaultFee(vault: string) {
+    const contractVault = loadContractVault(vault);
+
+    let [percent, denominator] = await contractVault.feePercent();
+
+    const fee = percent.mul(ROUND_NUMBER).div(denominator);
+
+    return fee.toNumber() / ROUND_NUMBER;
+}
