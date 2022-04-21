@@ -17,5 +17,7 @@ export async function HandleVaultAPY(req: Request, res: Response) {
 export async function HandleVaultFee(req: Request, res: Response) {
     const vault = req.params.vault;
 
-    res.send(await getVaultFee(vault));
+    const fee = await getVaultFee(vault);
+
+    res.send(fee.toString());
 }
