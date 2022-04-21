@@ -3,7 +3,7 @@ import axios from "axios";
 import { BEEFY_API } from "../utils/constants";
 
 const strategies: { [key: string]: () => Promise<number> } = {
-    "0x6Ad07E659563490d40377a98a7f0f62ed7d38C41": async () => {
+    "0x6ad07e659563490d40377a98a7f0f62ed7d38c41": async () => {
         return await routeBeefyAPY("boo-ftm-usdc");
     },
 };
