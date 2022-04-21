@@ -4,9 +4,9 @@ export default function routeWrapper(fn: (req: Request, res: Response) => Promis
     return async (req: Request, res: Response) => {
         try {
             await fn(req, res);
-        } catch (e) {
+        } catch (e: any) {
             console.log(e);
-            res.status(500).send(e);
+            res.status(500).send(e.toString());
         }
     };
 }
