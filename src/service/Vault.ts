@@ -39,15 +39,9 @@ export async function getVaultAPY(vault: string) {
 export async function getVaultFee(vault: string) {
     const contractVault = loadContractTorqueVaultV1(vault);
 
-    console.log("Got vault");
-
     let [percent, denominator] = await contractVault.feePercent();
 
-    console.log("Got percent");
-
     const fee = percent.mul(ROUND_NUMBER).div(denominator);
-
-    console.log("Fee");
 
     return fee.toNumber() / ROUND_NUMBER;
 }

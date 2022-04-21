@@ -5,17 +5,17 @@ import { getVaultAPY, getVaultFee, getVaultTVL } from "../service/Vault";
 export async function HandleVaultTVL(req: Request, res: Response) {
     const vault = req.params.vault;
 
-    return getVaultTVL(vault);
+    res.send(await getVaultTVL(vault));
 }
 
 export async function HandleVaultAPY(req: Request, res: Response) {
     const vault = req.params.vault;
 
-    return getVaultAPY(vault);
+    res.send(await getVaultAPY(vault));
 }
 
 export async function HandleVaultFee(req: Request, res: Response) {
     const vault = req.params.vault;
 
-    return getVaultFee(vault);
+    res.send(await getVaultFee(vault));
 }
