@@ -3,7 +3,7 @@
 domains=("api-v1.torque.money")
 rsa_key_size=4096
 data_path="certbot"
-email="email@api-v1.torque.money"
+email="email@torque.money"
 
 if [ -d "$data_path" ]; then
     echo "### Starting containers ..."
@@ -41,7 +41,7 @@ docker-compose run --rm --entrypoint "\
 echo
 
 echo "### Requesting Let's Encrypt certificate for $domains ..."
-domain_args=""
+domain_args="--expand"
 for domain in "${domains[@]}"; do
     domain_args="$domain_args -d $domain"
 done
