@@ -1,6 +1,7 @@
 import { Request, Response } from "express";
+import { getUserVaultTVL } from "../service/UserVault";
 
-import { parseAddress } from "../utils/Parse";
+import { formatNumber, parseAddress, parseNumber } from "../utils/Parse";
 
 // Takes in a wallet address and the vault and returns the TVL for that user
 export async function HandleUserVaultTVL(req: Request, res: Response) {
@@ -8,7 +9,9 @@ export async function HandleUserVaultTVL(req: Request, res: Response) {
 
     const wallet = parseAddress(req.query.wallet as string);
 
-    // **** Now I need to calculate the users TVL from their balance
+    const tvl = await getUserVaultTVL(vault, wallet);
+
+    res.send(parseNumber(tvl));
 }
 
 // Takes in a wallet address, token, and the vault and returns the balance of the token for that user with the given vault
