@@ -3,6 +3,7 @@
 domains=("api-v1.torque.money")
 rsa_key_size=4096
 data_path="certbot"
+email="email@api-v1.torque.money"
 
 if [ -d "$data_path" ]; then
     echo "### Starting containers ..."
@@ -48,7 +49,7 @@ done
 
 docker-compose run --rm --entrypoint "\
     certbot certonly --webroot -w /var/www/certbot \
-        --register-unsafely-without-email \
+        --email $email \
         $domain_args \
         --rsa-key-size $rsa_key_size \
         --agree-tos \
