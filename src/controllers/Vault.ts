@@ -3,6 +3,7 @@ import { Request, Response } from "express";
 import { getVaultAPY, getVaultFee, getVaultTVL } from "../service/Vault";
 import { parseAddress, formatNumber } from "../utils/Parse";
 
+// Takes in the vault and returns the TVL for that vault
 export async function HandleVaultTVL(req: Request, res: Response) {
     const vault = parseAddress(req.params.vault);
 
@@ -11,6 +12,7 @@ export async function HandleVaultTVL(req: Request, res: Response) {
     res.send(formatNumber(tvl));
 }
 
+// Takes in the vault and returns the APY for that vault
 export async function HandleVaultAPY(req: Request, res: Response) {
     const vault = parseAddress(req.params.vault);
 
@@ -19,10 +21,11 @@ export async function HandleVaultAPY(req: Request, res: Response) {
     res.send(formatNumber(apy));
 }
 
+// Takes in the vault and returns the fee percent and amount for that vault
 export async function HandleVaultFee(req: Request, res: Response) {
     const vault = parseAddress(req.params.vault);
 
-    const fee = await getVaultFee(vault);
+    const [feeAmount, feePercent] = await getVaultFee(vault);
 
-    res.send(formatNumber(fee));
+    res.json({ feeAmount: formatNumber(feeAmount), feePercent: formatNumber(feePercent) });
 }
