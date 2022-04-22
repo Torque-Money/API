@@ -61,4 +61,6 @@ export async function getUserVaultQuote(vault: string, token: string, amount: nu
     if (tokenCount < 2) throw new Error("Vault requires at least two tokens");
 
     // **** Now we need to calculate the percentage for this, and then we need to calculate the allocations for the other tokens and return them as JSON
+
+    // **** To do this we need to find the percent which gets them there, and then do the same thing for the rest
 }
