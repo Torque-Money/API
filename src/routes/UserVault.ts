@@ -1,11 +1,12 @@
 import express from "express";
 
+import { HandleUserVaultBalance, HandleUserVaultQuote, HandleUserVaultTVL } from "../controllers/UserVault";
 import routeWrapper from "../utils/RouteWrapper";
 
 const router = express.Router();
 
-router.get("/tvl/:vault", routeWrapper(HandleVaultFee));
-router.get("/balance/:vault", routeWrapper(HandleVaultTVL));
-router.get("/quote/:vault", routeWrapper(HandleVaultAPY));
+router.get("/tvl/:vault", routeWrapper(HandleUserVaultTVL));
+router.get("/balance/:vault", routeWrapper(HandleUserVaultBalance));
+router.get("/quote/:vault", routeWrapper(HandleUserVaultQuote));
 
 export default router;
