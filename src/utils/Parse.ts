@@ -1,5 +1,4 @@
-import { ethers } from "ethers";
-
+import { BigNumber } from "ethers";
 import { ROUND_NUMBER } from "./Constants";
 
 export function formatNumber(raw: number) {
@@ -13,8 +12,8 @@ export function parseNumber(raw: number) {
     else return raw.toString();
 }
 
-export function parseBigNumber(raw: ethers.BigNumber, decimals: number) {
-    return raw.mul(ROUND_NUMBER).div(ethers.BigNumber.from(10).pow(decimals)).toNumber() / ROUND_NUMBER;
+export function parseBigNumber(raw: BigNumber, decimals: number) {
+    return raw.mul(ROUND_NUMBER).div(BigNumber.from(10).pow(decimals)).toNumber() / ROUND_NUMBER;
 }
 
 export function parseAddress(address: string) {
