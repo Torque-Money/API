@@ -1,10 +1,11 @@
 import { BigNumber } from "ethers";
+
 import tokenData from "../data/Token";
 import { loadContractTorqueVaultV1 } from "../utils/Ethers";
 import { parseAddress, parseBigNumber } from "../utils/Parse";
 import { getPrice } from "./Prices";
 
-// Get the users TVL
+// Get the users TVL for the vault
 export async function getUserVaultTVL(vault: string, wallet: string) {
     const contractVault = loadContractTorqueVaultV1(vault);
 
@@ -27,3 +28,29 @@ export async function getUserVaultTVL(vault: string, wallet: string) {
 
     return tvl;
 }
+
+// Get the users balance for the vault
+export async function getUserVaultBalance(vault: string, wallet: string) {
+    const contractVault = loadContractTorqueVaultV1(vault);
+
+    const shares: BigNumber = await contractVault.balanceOf(wallet);
+    let emptyFlag = false;
+    if (shares.eq(0)) emptyFlag = true;
+
+    const tokenAmount: BigNumber[] = await contractVault.estimateRedeem(shares);
+
+    const amounts: any = {};
+    for (let i = 0; i < tokenAmount.length; i++) {
+        const token = parseAddress(await contractVault.tokenByIndex(i));
+
+        if (!emptyFlag) {
+            const decimals = tokenData[token].decimals;
+
+            amounts[token] = parseBigNumber(tokenAmount[i], decimals);
+        } else amounts[token] = 0;
+    }
+
+    return amounts as { [key: string]: number };
+}
+
+// Get a quote for the allocation of tokens off of a single allocation for the vault

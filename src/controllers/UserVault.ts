@@ -14,12 +14,11 @@ export async function HandleUserVaultTVL(req: Request, res: Response) {
     res.send(parseNumber(tvl));
 }
 
-// Takes in a wallet address, token, and the vault and returns the balance of the token for that user with the given vault
+// Takes in a wallet address, and the vault and returns the balance of the tokens for that user associated with the given vault
 export async function HandleUserVaultBalance(req: Request, res: Response) {
     const vault = parseAddress(req.params.vault);
 
     const wallet = parseAddress(req.query.wallet as string);
-    const token = parseAddress(req.query.token as string);
 
     // **** Now calculate the balance
 }
