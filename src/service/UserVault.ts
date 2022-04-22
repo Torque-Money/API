@@ -54,3 +54,4 @@ export async function getUserVaultBalance(vault: string, wallet: string) {
 }
 
 // Get a quote for the allocation of tokens off of a single allocation for the vault
+export async function getUserVaultQuote(vault: string, wallet: string, amount: number) {}

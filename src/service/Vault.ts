@@ -47,5 +47,6 @@ export async function getVaultFee(vault: string) {
 
     const fee = percent.mul(ROUND_NUMBER).div(denominator);
 
-    return [feeAmount, fee.toNumber() / ROUND_NUMBER];
+    // **** How do we deal with the decimals for the fee amount ???
+    return [feeAmount.toNumber(), fee.toNumber() / ROUND_NUMBER] as [number, number];
 }
