@@ -27,4 +27,6 @@ export async function HandleUserVaultQuote(req: Request, res: Response) {
 
     const token = parseAddress(req.query.token as string);
     const amount = parseFloat(req.query.amount as string);
+
+    // **** Now calculate the quote for the other tokens
 }
