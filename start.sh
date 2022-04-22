@@ -1,6 +1,6 @@
 #!/bin/bash
 
-domains=($FRONTEND_ADDRESS)
+domains=("api-v1.torque.money")
 rsa_key_size=4096
 data_path="certbot"
 
