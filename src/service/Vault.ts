@@ -39,14 +39,12 @@ export async function getVaultAPY(vault: string) {
 }
 
 // Get the fee for a particular vault
-export async function getVaultFee(vault: string) {
+export async function getVaultFeePercent(vault: string) {
     const contractVault = loadContractTorqueVaultV1(vault);
 
-    const feeAmount: BigNumber = await contractVault.feeAmount();
     let [percent, denominator]: [BigNumber, BigNumber] = await contractVault.feePercent();
 
     const fee = percent.mul(ROUND_NUMBER).div(denominator);
 
-    // **** How do we deal with the decimals for the fee amount ???
-    return [feeAmount.toNumber(), fee.toNumber() / ROUND_NUMBER] as [number, number];
+    return fee.toNumber() / ROUND_NUMBER;
 }

@@ -1,5 +1,5 @@
 import { Request, Response } from "express";
-import { getUserVaultTVL } from "../service/UserVault";
+import { getUserVaultBalance, getUserVaultTVL } from "../service/UserVault";
 
 import { formatNumber, parseAddress, parseNumber } from "../utils/Parse";
 
@@ -20,7 +20,9 @@ export async function HandleUserVaultBalance(req: Request, res: Response) {
 
     const wallet = parseAddress(req.query.wallet as string);
 
-    // **** Now calculate the balance
+    const balance = await getUserVaultBalance(vault, wallet);
+
+    res.json(balance);
 }
 
 // Takes in a vault and a token and an amount of the associated token and returns the associated amount of the other tokens in the vault

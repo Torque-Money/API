@@ -1,6 +1,6 @@
 import { Request, Response } from "express";
 
-import { getVaultAPY, getVaultFee, getVaultTVL } from "../service/Vault";
+import { getVaultAPY, getVaultFeePercent, getVaultTVL } from "../service/Vault";
 import { parseAddress, formatNumber, parseNumber } from "../utils/Parse";
 
 // Takes in the vault and returns the TVL for that vault
@@ -25,7 +25,7 @@ export async function HandleVaultAPY(req: Request, res: Response) {
 export async function HandleVaultFee(req: Request, res: Response) {
     const vault = parseAddress(req.params.vault);
 
-    const [feeAmount, feePercent] = await getVaultFee(vault);
+    const feePercent = await getVaultFeePercent(vault);
 
-    res.json({ feeAmount: formatNumber(feeAmount), feePercent: formatNumber(feePercent) });
+    res.json(formatNumber(feePercent));
 }
