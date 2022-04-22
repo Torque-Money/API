@@ -1,7 +1,7 @@
 import { Request, Response } from "express";
 
 import { getVaultAPY, getVaultFee, getVaultTVL } from "../service/Vault";
-import { parseAddress, formatNumber } from "../utils/parse";
+import { parseAddress, formatNumber } from "../utils/Parse";
 
 export async function HandleVaultTVL(req: Request, res: Response) {
     const vault = parseAddress(req.params.vault);

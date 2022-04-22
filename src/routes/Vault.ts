@@ -1,6 +1,6 @@
 import express from "express";
 import { HandleVaultAPY, HandleVaultFee, HandleVaultTVL } from "../controllers/Vault";
-import routeWrapper from "../utils/routeWrapper";
+import routeWrapper from "../utils/RouteWrapper";
 
 const router = express.Router();
 
