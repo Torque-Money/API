@@ -1,5 +1,5 @@
 import { Request, Response } from "express";
-import { getUserVaultBalance, getUserVaultTVL } from "../service/UserVault";
+import { getUserVaultBalance, getUserVaultQuote, getUserVaultTVL } from "../service/UserVault";
 
 import { formatNumber, parseAddress, parseNumber } from "../utils/Parse";
 
@@ -32,5 +32,7 @@ export async function HandleUserVaultQuote(req: Request, res: Response) {
     const token = parseAddress(req.query.token as string);
     const amount = parseFloat(req.query.amount as string);
 
-    // **** Now calculate the quote for the other tokens
+    const quote = await getUserVaultQuote(vault, token, amount);
+
+    res.json(quote);
 }

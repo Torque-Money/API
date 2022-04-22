@@ -54,4 +54,11 @@ export async function getUserVaultBalance(vault: string, wallet: string) {
 }
 
 // Get a quote for the allocation of tokens off of a single allocation for the vault
-export async function getUserVaultQuote(vault: string, wallet: string, amount: number) {}
+export async function getUserVaultQuote(vault: string, token: string, amount: number) {
+    const contractVault = loadContractTorqueVaultV1(vault);
+
+    const tokenCount = await contractVault.tokenCount();
+    if (tokenCount < 2) throw new Error("Vault requires at least two tokens");
+
+    // **** Now we need to calculate the percentage for this, and then we need to calculate the allocations for the other tokens and return them as JSON
+}
