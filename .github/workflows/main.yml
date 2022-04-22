@@ -20,4 +20,4 @@ jobs:
                       cd API/
                       docker-compose down
                       git pull
-                      docker-compose up --build -d
+                      bash start.sh
