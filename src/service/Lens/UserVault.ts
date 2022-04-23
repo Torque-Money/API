@@ -60,7 +60,11 @@ export async function getUserVaultQuote(vault: string, token: string, amount: nu
     const tokenCount = await contractVault.tokenCount();
     if (tokenCount < 2) throw new Error("Vault requires at least two tokens");
 
+    // const vaultBalance =
+
     const amounts: any = {};
+
+    // **** First of all I need to get the balances and iterate over until I find the ratio (no I dont, just get the balance here and divide by the decimals)
 
     // **** The loop here needs to consider it like it is a estimate deposit
 
