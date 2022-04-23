@@ -1,9 +1,9 @@
 import { BigNumber } from "ethers";
 
 import tokenData from "../../data/Token";
-import { loadContractTorqueVaultV1 } from "../../utils/Ethers";
-import { parseAddress, parseBigNumber } from "../../utils/Parse";
-import { getTokenPrice } from "./Prices";
+import { loadContractTorqueVaultV1 } from "../../utils";
+import { parseAddress, parseBigNumber } from "../../utils";
+import { getTokenPrice } from ".";
 
 // Get the users TVL for the vault
 export async function getUserVaultTVL(vault: string, wallet: string) {

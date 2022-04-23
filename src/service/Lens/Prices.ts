@@ -1,6 +1,6 @@
 import axios from "axios";
 
-import { BEEFY_API } from "../../utils/Constants";
+import { BEEFY_API } from "../../utils";
 
 const tokenData: { [key: string]: () => Promise<number> } = {
     "0x21be370d5312f44cb42ce377bc9b8a0cef1a4c83": async () => {
