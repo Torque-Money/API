@@ -57,8 +57,6 @@ export async function getUserVaultQuote(vault: string, token: string, amount: nu
     const tokenCount = (await contractVault.tokenCount()).toNumber();
     if (tokenCount < 2) throw new Error("Vault requires at least two tokens");
 
-    // **** Need to do a seperation for this when the vault balance is zero
-
     const vaultBalance = await contractVault.approxBalance(token);
     if (vaultBalance.eq(0)) return null;
 
