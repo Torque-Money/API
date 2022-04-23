@@ -60,6 +60,8 @@ export async function getUserVaultQuote(vault: string, token: string, amount: nu
     // **** Need to do a seperation for this when the vault balance is zero
 
     const vaultBalance = await contractVault.approxBalance(token);
+    if (vaultBalance.eq(0)) return null;
+
     const { decimals } = getTokenData(token);
     const parsedAmount = parseToBigNumber(amount, decimals);
 
