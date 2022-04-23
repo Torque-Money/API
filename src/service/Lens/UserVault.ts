@@ -69,7 +69,6 @@ export async function getUserVaultQuote(vault: string, token: string, amount: nu
         const vaultToken = await contractVault.tokenByIndex(i);
 
         if (vaultToken != token) {
-            // **** Now line the amounts up with the given ratio
             const vaultBalance = await contractVault.approxBalance(vaultToken);
             const allocatedAmountRaw = vaultBalance.mul(Math.floor(ratio * ROUND_NUMBER)).div(ROUND_NUMBER);
 
