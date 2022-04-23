@@ -18,6 +18,6 @@ async function routeBeefyPrice(name: string) {
     return data[name];
 }
 
-export default async function getTokenPrice(token: string) {
+export async function getTokenPrice(token: string) {
     return await tokenData[token]();
 }

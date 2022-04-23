@@ -1,2 +1,2 @@
-export * from "./Vault";
-export * from "./UserVault";
+export { default as Vault } from "./Vault";
+export { default as UserVault } from "./UserVault";
