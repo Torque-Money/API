@@ -9,4 +9,4 @@ router.get("/tvl/:vault", routeWrapper(HandleUserVaultTVL));
 router.get("/balance/:vault", routeWrapper(HandleUserVaultBalance));
 router.get("/quote/:vault", routeWrapper(HandleUserVaultQuote));
 
-export default router;
+export router;
