@@ -10,5 +10,3 @@ router.get("/tvl/:vault", routeWrapper(HandleVaultTVL));
 router.get("/apy/:vault", routeWrapper(HandleVaultAPY));
 
 export default router;
-
-// **** Maybe it would make sense to bundle all of the lens routes in some upper routing package ?
