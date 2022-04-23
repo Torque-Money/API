@@ -70,5 +70,7 @@ export async function getUserVaultQuote(vault: string, token: string, amount: nu
 
     // **** The loop here needs to consider it like it is a estimate deposit
 
+    // **** Lets just get the approx balance of all the other tokens, and then use that ratio combined with the current amount to figure out the factor we need to multipy the current by
+
     return amounts as { [key: string]: number };
 }
