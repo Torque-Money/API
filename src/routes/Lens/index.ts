@@ -1,2 +1,2 @@
-import Vault from "./Vault";
-import UserVault from "./UserVault";
+export * from "./Vault";
+export * from "./UserVault";
