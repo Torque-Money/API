@@ -1,11 +1,10 @@
 import express from "express";
 
-import { Vault, UserVault } from "./routes/Lens";
+import Lens from "./routes/Lens";
 
 const app = express();
 
-app.use("/lens/vault", Vault);
-app.use("/lens/userVault", UserVault);
+app.use("/lens", Lens);
 
 const PORT = process.env.PORT || 7000;
 
