@@ -1,11 +1,11 @@
 import { BigNumber } from "ethers";
 
-import { ROUND_NUMBER } from "../utils/Constants";
+import { ROUND_NUMBER } from "../../utils/Constants";
 import getStrategyAPY from "./APY";
 import { getPrice } from "./Prices";
-import tokenData from "../data/Token";
-import { parseAddress, parseBigNumber } from "../utils/Parse";
-import { loadContractTorqueVaultV1 } from "../utils/Ethers";
+import tokenData from "../../data/Token";
+import { parseAddress, parseBigNumber } from "../../utils/Parse";
+import { loadContractTorqueVaultV1 } from "../../utils/Ethers";
 
 // Get the TVL of a particular vault
 export async function getVaultTVL(vault: string) {

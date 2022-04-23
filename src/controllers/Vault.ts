@@ -1,6 +1,6 @@
 import { Request, Response } from "express";
 
-import { getVaultAPY, getVaultFeePercent, getVaultTVL } from "../service/Vault";
+import { getVaultAPY, getVaultFeePercent, getVaultTVL } from "../service/lens/Vault";
 import { parseAddress, formatNumber, parseNumber } from "../utils/Parse";
 
 // Takes in the vault and returns the TVL for that vault

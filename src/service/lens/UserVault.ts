@@ -1,8 +1,8 @@
 import { BigNumber } from "ethers";
 
-import tokenData from "../data/Token";
-import { loadContractTorqueVaultV1 } from "../utils/Ethers";
-import { parseAddress, parseBigNumber } from "../utils/Parse";
+import tokenData from "../../data/Token";
+import { loadContractTorqueVaultV1 } from "../../utils/Ethers";
+import { parseAddress, parseBigNumber } from "../../utils/Parse";
 import { getPrice } from "./Prices";
 
 // Get the users TVL for the vault
@@ -60,7 +60,15 @@ export async function getUserVaultQuote(vault: string, token: string, amount: nu
     const tokenCount = await contractVault.tokenCount();
     if (tokenCount < 2) throw new Error("Vault requires at least two tokens");
 
+    // **** Maybe we can do some sort of preview and check how much each person should have to deposit for the same amount of tokens ?
+
     // **** Now we need to calculate the percentage for this, and then we need to calculate the allocations for the other tokens and return them as JSON
 
     // **** To do this we need to find the percent which gets them there, and then do the same thing for the rest
+
+    const amounts: any = {};
+
+    // **** The loop here needs to consider it like it is a estimate deposit
+
+    return amounts as { [key: string]: number };
 }

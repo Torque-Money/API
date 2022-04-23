@@ -1,5 +1,5 @@
 import { Request, Response } from "express";
-import { getUserVaultBalance, getUserVaultQuote, getUserVaultTVL } from "../service/UserVault";
+import { getUserVaultBalance, getUserVaultQuote, getUserVaultTVL } from "../service/lens/UserVault";
 
 import { formatNumber, parseAddress, parseNumber } from "../utils/Parse";
 
