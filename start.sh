@@ -1,6 +1,6 @@
 #!/bin/bash
 
-domains=("api-v1.torque.money")
+domains=("api.torque.money")
 rsa_key_size=4096
 data_path="certbot"
 email="email@torque.money"
