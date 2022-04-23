@@ -66,8 +66,16 @@ export async function getUserVaultQuote(vault: string, token: string, amount: nu
     const amounts: any = {};
 
     for (let i = 0; i < tokenCount; i++) {
-        // **** As long as the token is not the token we have selected it is all good
-        // **** Now line the amounts up with the given ratio
+        const vaultToken = await contractVault.tokenByIndex(i);
+
+        if (vaultToken != token) {
+            // **** Now line the amounts up with the given ratio
+            const vaultBalance = await contractVault.approxBalance(vaultToken);
+            const allocatedAmountRaw = vaultBalance.mul(Math.floor(ratio * ROUND_NUMBER)).div(ROUND_NUMBER);
+
+            const { decimals } = getTokenData(vaultToken);
+            amounts[vaultToken] = parseBigNumber(allocatedAmountRaw, decimals);
+        }
     }
 
     return amounts as { [key: string]: number };
