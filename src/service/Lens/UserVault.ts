@@ -1,5 +1,3 @@
-import { BigNumber } from "ethers";
-
 import { getTokenData } from "../../data";
 import { loadContractTorqueVaultV1 } from "../../utils";
 import { parseAddress, parseBigNumber } from "../../utils";
@@ -11,10 +9,10 @@ export async function getUserVaultTVL(vault: string, wallet: string) {
 
     let tvl = 0;
 
-    const shares: BigNumber = await contractVault.balanceOf(wallet);
+    const shares = await contractVault.balanceOf(wallet);
     if (shares.eq(0)) return tvl;
 
-    const tokenAmount: BigNumber[] = await contractVault.estimateRedeem(shares);
+    const tokenAmount = await contractVault.estimateRedeem(shares);
 
     for (let i = 0; i < tokenAmount.length; i++) {
         const token = parseAddress(await contractVault.tokenByIndex(i));
@@ -33,11 +31,11 @@ export async function getUserVaultTVL(vault: string, wallet: string) {
 export async function getUserVaultBalance(vault: string, wallet: string) {
     const contractVault = loadContractTorqueVaultV1(vault);
 
-    const shares: BigNumber = await contractVault.balanceOf(wallet);
+    const shares = await contractVault.balanceOf(wallet);
     let emptyFlag = false;
     if (shares.eq(0)) emptyFlag = true;
 
-    const tokenAmount: BigNumber[] = await contractVault.estimateRedeem(shares);
+    const tokenAmount = await contractVault.estimateRedeem(shares);
 
     const amounts: any = {};
     for (let i = 0; i < tokenAmount.length; i++) {
@@ -58,7 +56,7 @@ export async function getUserVaultQuote(vault: string, token: string, amount: nu
     const contractVault = loadContractTorqueVaultV1(vault);
 
     const tokenCount = await contractVault.tokenCount();
-    if (tokenCount < 2) throw new Error("Vault requires at least two tokens");
+    if (tokenCount.toNumber() < 2) throw new Error("Vault requires at least two tokens");
 
     // const vaultBalance =
 
