@@ -36,7 +36,7 @@ export async function getUserVaultBalance(vault: string, wallet: string) {
 
     const tokenAmount = await contractVault.estimateRedeem(shares);
 
-    const amounts: any = {};
+    const amounts: { [key: string]: number } = {};
     for (let i = 0; i < tokenAmount.length; i++) {
         const token = parseAddress(await contractVault.tokenByIndex(i));
 
@@ -47,7 +47,7 @@ export async function getUserVaultBalance(vault: string, wallet: string) {
         } else amounts[token] = 0;
     }
 
-    return amounts as { [key: string]: number };
+    return amounts;
 }
 
 // Get a quote for the allocation of tokens off of a single allocation for the vault
@@ -65,7 +65,7 @@ export async function getUserVaultQuote(vault: string, token: string, amount: nu
 
     const ratio = parsedAmount.mul(ROUND_NUMBER).div(vaultBalance).toNumber() / ROUND_NUMBER;
 
-    const amounts: any = {};
+    const amounts: { [key: string]: number | null } = {};
 
     for (let i = 0; i < tokenCount; i++) {
         const _token = await contractVault.tokenByIndex(i);
@@ -82,5 +82,5 @@ export async function getUserVaultQuote(vault: string, token: string, amount: nu
         }
     }
 
-    return amounts as { [key: string]: number | null };
+    return amounts;
 }
