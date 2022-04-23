@@ -63,8 +63,6 @@ export async function getUserVaultQuote(vault: string, token: string, amount: nu
 
     const ratio = parsedAmount.mul(ROUND_NUMBER).div(vaultBalance).toNumber() / ROUND_NUMBER;
 
-    // **** What do we do in the event that there are no tokens or the balance is exceeded ????
-
     const amounts: any = {};
 
     for (let i = 0; i < tokenCount; i++) {
@@ -72,12 +70,14 @@ export async function getUserVaultQuote(vault: string, token: string, amount: nu
 
         if (vaultToken != token) {
             const vaultBalance = await contractVault.approxBalance(vaultToken);
-            const allocatedAmountRaw = vaultBalance.mul(Math.floor(ratio * ROUND_NUMBER)).div(ROUND_NUMBER);
+            if (vaultBalance.gt(0)) {
+                const allocatedAmountRaw = vaultBalance.mul(Math.floor(ratio * ROUND_NUMBER)).div(ROUND_NUMBER);
 
-            const { decimals } = getTokenData(vaultToken);
-            amounts[vaultToken] = parseBigNumber(allocatedAmountRaw, decimals);
+                const { decimals } = getTokenData(vaultToken);
+                amounts[vaultToken] = parseBigNumber(allocatedAmountRaw, decimals);
+            } else amounts[vaultToken] = null;
         }
     }
 
-    return amounts as { [key: string]: number };
+    return amounts as { [key: string]: number | null };
 }
