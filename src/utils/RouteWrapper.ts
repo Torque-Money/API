@@ -1,6 +1,6 @@
 import { Request, Response } from "express";
 
-export default function routeWrapper(fn: (req: Request, res: Response) => Promise<any>) {
+export function routeWrapper(fn: (req: Request, res: Response) => Promise<any>) {
     return async (req: Request, res: Response) => {
         try {
             await fn(req, res);
