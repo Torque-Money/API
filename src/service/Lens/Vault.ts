@@ -11,13 +11,13 @@ export async function getVaultTVL(vault: string) {
 
     let tvl = 0;
 
-    const tokenCount = await contractVault.tokenCount();
+    const tokenCount = (await contractVault.tokenCount()).toNumber();
 
-    for (let i = 0; i < tokenCount.toNumber(); i++) {
+    for (let i = 0; i < tokenCount; i++) {
         const token = parseAddress(await contractVault.tokenByIndex(i));
 
         const tokenAmount = await contractVault.approxBalance(token);
-        const decimals = getTokenData(token).decimals;
+        const { decimals } = getTokenData(token);
 
         const amount = parseBigNumber(tokenAmount, decimals);
 

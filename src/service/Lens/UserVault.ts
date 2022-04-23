@@ -1,6 +1,5 @@
 import { getTokenData } from "../../data";
-import { loadContractTorqueVaultV1 } from "../../utils";
-import { parseAddress, parseBigNumber } from "../../utils";
+import { parseAddress, parseBigNumber, loadContractTorqueVaultV1, parseToBigNumber, ROUND_NUMBER } from "../../utils";
 import { getTokenPrice } from ".";
 
 // Get the users TVL for the vault
@@ -17,7 +16,7 @@ export async function getUserVaultTVL(vault: string, wallet: string) {
     for (let i = 0; i < tokenAmount.length; i++) {
         const token = parseAddress(await contractVault.tokenByIndex(i));
 
-        const decimals = getTokenData(token).decimals;
+        const { decimals } = getTokenData(token);
 
         const amount = parseBigNumber(tokenAmount[i], decimals);
 
@@ -55,18 +54,21 @@ export async function getUserVaultBalance(vault: string, wallet: string) {
 export async function getUserVaultQuote(vault: string, token: string, amount: number) {
     const contractVault = loadContractTorqueVaultV1(vault);
 
-    const tokenCount = await contractVault.tokenCount();
-    if (tokenCount.toNumber() < 2) throw new Error("Vault requires at least two tokens");
+    const tokenCount = (await contractVault.tokenCount()).toNumber();
+    if (tokenCount < 2) throw new Error("Vault requires at least two tokens");
 
-    // const vaultBalance =
+    const vaultBalance = await contractVault.approxBalance(token);
+    const { decimals } = getTokenData(token);
+    const parsedAmount = parseToBigNumber(amount, decimals);
+
+    const ratio = parsedAmount.mul(ROUND_NUMBER).div(vaultBalance).toNumber() / ROUND_NUMBER;
 
     const amounts: any = {};
 
-    // **** First of all I need to get the balances and iterate over until I find the ratio (no I dont, just get the balance here and divide by the decimals)
-
-    // **** The loop here needs to consider it like it is a estimate deposit
-
-    // **** Lets just get the approx balance of all the other tokens, and then use that ratio combined with the current amount to figure out the factor we need to multipy the current by
+    for (let i = 0; i < tokenCount; i++) {
+        // **** As long as the token is not the token we have selected it is all good
+        // **** Now line the amounts up with the given ratio
+    }
 
     return amounts as { [key: string]: number };
 }
