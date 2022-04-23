@@ -1,6 +1,6 @@
 import express from "express";
 
-import { Vault } from "./routes/Lens";
+import { Vault, UserVault } from "./routes/Lens";
 
 const app = express();
 

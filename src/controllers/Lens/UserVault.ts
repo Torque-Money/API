@@ -1,7 +1,7 @@
 import { Request, Response } from "express";
-import { getUserVaultBalance, getUserVaultQuote, getUserVaultTVL } from "../../service/Lens/UserVault";
 
-import { formatNumber, parseAddress, parseNumber } from "../../utils/Parse";
+import { getUserVaultBalance, getUserVaultQuote, getUserVaultTVL } from "../../service/Lens";
+import { parseAddress, parseNumber } from "../../utils";
 
 // Takes in a wallet address and the vault and returns the TVL for that user
 export async function HandleUserVaultTVL(req: Request, res: Response) {

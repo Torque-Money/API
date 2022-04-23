@@ -1,7 +1,7 @@
 import express from "express";
 
-import { HandleUserVaultBalance, HandleUserVaultQuote, HandleUserVaultTVL } from "../../controllers/Lens/UserVault";
-import routeWrapper from "../../utils/RouteWrapper";
+import { HandleUserVaultBalance, HandleUserVaultQuote, HandleUserVaultTVL } from "../../controllers/Lens";
+import { routeWrapper } from "../../utils";
 
 const router = express.Router();
 
