@@ -57,6 +57,8 @@ export async function getUserVaultQuote(vault: string, token: string, amount: nu
     const tokenCount = (await contractVault.tokenCount()).toNumber();
     if (tokenCount < 2) throw new Error("Vault requires at least two tokens");
 
+    // **** Need to do a seperation for this when the vault balance is zero
+
     const vaultBalance = await contractVault.approxBalance(token);
     const { decimals } = getTokenData(token);
     const parsedAmount = parseToBigNumber(amount, decimals);
@@ -66,16 +68,17 @@ export async function getUserVaultQuote(vault: string, token: string, amount: nu
     const amounts: any = {};
 
     for (let i = 0; i < tokenCount; i++) {
-        const vaultToken = await contractVault.tokenByIndex(i);
+        const _token = await contractVault.tokenByIndex(i);
 
-        if (vaultToken != token) {
-            const vaultBalance = await contractVault.approxBalance(vaultToken);
-            if (vaultBalance.gt(0)) {
-                const allocatedAmountRaw = vaultBalance.mul(Math.floor(ratio * ROUND_NUMBER)).div(ROUND_NUMBER);
+        if (_token != token) {
+            const _vaultBalance = await contractVault.approxBalance(_token);
 
-                const { decimals } = getTokenData(vaultToken);
-                amounts[vaultToken] = parseBigNumber(allocatedAmountRaw, decimals);
-            } else amounts[vaultToken] = null;
+            if (_vaultBalance.gt(0)) {
+                const allocatedAmountRaw = _vaultBalance.mul(Math.floor(ratio * ROUND_NUMBER)).div(ROUND_NUMBER);
+
+                const { decimals } = getTokenData(_token);
+                amounts[_token] = parseBigNumber(allocatedAmountRaw, decimals);
+            } else amounts[_token] = null;
         }
     }
 
