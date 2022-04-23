@@ -3,4 +3,6 @@ const TokenData = {
     "0x04068da6c83afcfa0e13ba15a6696662335d5b75": { decimals: 6 },
 } as { [key: string]: { decimals: number } };
 
-export default TokenData;
+export function getTokenData(token: string) {
+    return TokenData[token];
+}

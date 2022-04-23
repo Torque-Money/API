@@ -1,6 +1,6 @@
 import { BigNumber } from "ethers";
 
-import tokenData from "../../data/Token";
+import { getTokenData } from "../../data";
 import { loadContractTorqueVaultV1 } from "../../utils";
 import { parseAddress, parseBigNumber } from "../../utils";
 import { getTokenPrice } from ".";
@@ -19,7 +19,7 @@ export async function getUserVaultTVL(vault: string, wallet: string) {
     for (let i = 0; i < tokenAmount.length; i++) {
         const token = parseAddress(await contractVault.tokenByIndex(i));
 
-        const decimals = tokenData[token].decimals;
+        const decimals = getTokenData(token).decimals;
 
         const amount = parseBigNumber(tokenAmount[i], decimals);
 
@@ -44,7 +44,7 @@ export async function getUserVaultBalance(vault: string, wallet: string) {
         const token = parseAddress(await contractVault.tokenByIndex(i));
 
         if (!emptyFlag) {
-            const decimals = tokenData[token].decimals;
+            const decimals = getTokenData(token).decimals;
 
             amounts[token] = parseBigNumber(tokenAmount[i], decimals);
         } else amounts[token] = 0;

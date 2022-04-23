@@ -1,9 +1,9 @@
 import { BigNumber } from "ethers";
 
 import { ROUND_NUMBER } from "../../utils/Constants";
-import getStrategyAPY from "./APY";
-import { getPrice } from "./Prices";
-import tokenData from "../../data/Token";
+import { getStrategyAPY } from "./APY";
+import { getTokenPrice } from "./Prices";
+import { getTokenData } from "../../data/Token";
 import { parseAddress, parseBigNumber } from "../../utils";
 import { loadContractTorqueVaultV1 } from "../../utils";
 
@@ -19,11 +19,11 @@ export async function getVaultTVL(vault: string) {
         const token = parseAddress(await contractVault.tokenByIndex(i));
 
         const tokenAmount: BigNumber = await contractVault.approxBalance(token);
-        const decimals = tokenData[token].decimals;
+        const decimals = getTokenData(token).decimals;
 
         const amount = parseBigNumber(tokenAmount, decimals);
 
-        tvl += (await getPrice(token)) * amount;
+        tvl += (await getTokenPrice(token)) * amount;
     }
 
     return tvl;
