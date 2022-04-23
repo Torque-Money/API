@@ -3,7 +3,7 @@ import { BigNumber } from "ethers";
 import tokenData from "../../data/Token";
 import { loadContractTorqueVaultV1 } from "../../utils/Ethers";
 import { parseAddress, parseBigNumber } from "../../utils/Parse";
-import { getPrice } from "./Prices";
+import getTokenPrice from "./Prices";
 
 // Get the users TVL for the vault
 export async function getUserVaultTVL(vault: string, wallet: string) {
@@ -23,7 +23,7 @@ export async function getUserVaultTVL(vault: string, wallet: string) {
 
         const amount = parseBigNumber(tokenAmount[i], decimals);
 
-        tvl += (await getPrice(token)) * amount;
+        tvl += (await getTokenPrice(token)) * amount;
     }
 
     return tvl;
