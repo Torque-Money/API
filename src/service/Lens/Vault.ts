@@ -1,9 +1,7 @@
-import { ROUND_NUMBER } from "../../utils/Constants";
 import { getStrategyAPY } from "./APY";
 import { getTokenPrice } from "./Prices";
-import { getTokenData } from "../../data/Token";
-import { parseAddress, parseBigNumber } from "../../utils";
-import { loadContractTorqueVaultV1 } from "../../utils";
+import { getTokenData } from "../../data";
+import { parseAddress, parseBigNumber, loadContractTorqueVaultV1, ROUND_NUMBER } from "../../utils";
 
 // Get the TVL of a particular vault
 export async function getVaultTVL(vault: string) {
