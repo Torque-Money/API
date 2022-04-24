@@ -1,7 +1,6 @@
 import { ethers } from "ethers";
 
-import BeefyLPStrategyABI from "../../abi/BeefyLPStrategy.json";
-import TorqueVaultV1ABI from "../../abi/TorqueVaultV1.json";
+import { BeefyLPStrategyABI, TorqueVaultV1ABI } from "../../abi";
 import { BeefyLPStrategy, TorqueVaultV1 } from "../../types";
 
 const RPC_URL = "https://rpc.ftm.tools/";
