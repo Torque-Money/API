@@ -12,7 +12,7 @@ async function routeBeefyAPY(name: string) {
     const url = `${BEEFY_API}/apy`;
     const { data } = await axios.get<{ [key: string]: number }>(url);
 
-    return data[name] * 100;
+    return data[name];
 }
 
 export async function getStrategyAPY(strategy: string) {
