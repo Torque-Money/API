@@ -1,6 +1,6 @@
 import { BigNumber } from "ethers";
 
-import { ROUND_NUMBER } from "./";
+import { ROUND_NUMBER } from ".";
 
 // Format a number to given decimal places
 // export function formatNumber(raw: number) {
