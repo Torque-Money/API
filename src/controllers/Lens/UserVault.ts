@@ -19,5 +19,5 @@ export async function HandleUserVaultBalance(req: Request, res: Response) {
 
     const balance = await getUserVaultBalance(vault, wallet);
 
-    res.json(balance);
+    res.json({ balance });
 }

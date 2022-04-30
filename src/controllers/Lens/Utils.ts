@@ -10,5 +10,5 @@ export async function HandleUserVaultQuote(req: Request, res: Response) {
 
     const quote = await getUserVaultQuote(vault, token, amount);
 
-    res.json(quote);
+    res.json({ quote });
 }
