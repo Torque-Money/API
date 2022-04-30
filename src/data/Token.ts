@@ -1,3 +1,5 @@
+import { parseAddress } from "../utils";
+
 const TokenData = {
     "0x21be370d5312f44cb42ce377bc9b8a0cef1a4c83": {
         ticker: "FTM",
@@ -44,7 +46,7 @@ const TokenData = {
 } as { [key: string]: { ticker: string; address: string; name: string; decimals: number } };
 
 export function getTokenData(token: string) {
-    return TokenData[token];
+    return TokenData[parseAddress(token)];
 }
 
 export function getAllTokens() {

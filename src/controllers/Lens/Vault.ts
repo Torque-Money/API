@@ -5,7 +5,7 @@ import { parseAddress } from "../../utils";
 
 // Takes in the vault and returns the TVL for that vault
 export async function HandleVaultTVL(req: Request, res: Response) {
-    const vault = parseAddress(req.params.vault);
+    const vault = req.params.vault;
 
     const tvl = await getVaultTVL(vault);
 
@@ -14,7 +14,7 @@ export async function HandleVaultTVL(req: Request, res: Response) {
 
 // Takes in the vault and returns the APY for that vault
 export async function HandleVaultAPY(req: Request, res: Response) {
-    const vault = parseAddress(req.params.vault);
+    const vault = req.params.vault;
 
     const apy = await getVaultAPY(vault);
 
@@ -23,7 +23,7 @@ export async function HandleVaultAPY(req: Request, res: Response) {
 
 // Takes in the vault and returns the fee percent and amount for that vault
 export async function HandleVaultFee(req: Request, res: Response) {
-    const vault = parseAddress(req.params.vault);
+    const vault = req.params.vault;
 
     const fee = await getVaultFeePercent(vault);
 

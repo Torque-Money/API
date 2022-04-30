@@ -1,6 +1,6 @@
 import axios from "axios";
 
-import { BEEFY_API } from "../../utils";
+import { BEEFY_API, parseAddress } from "../../utils";
 
 const strategies: { [key: string]: () => Promise<number> } = {
     "0x6ad07e659563490d40377a98a7f0f62ed7d38c41": async () => {
@@ -16,5 +16,5 @@ async function routeBeefyAPY(name: string) {
 }
 
 export async function getStrategyAPY(strategy: string) {
-    return await strategies[strategy]();
+    return await strategies[parseAddress(strategy)]();
 }

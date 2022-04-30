@@ -1,6 +1,5 @@
 import { getTokenData } from "../../data";
-import { parseAddress, parseBigNumber, loadContractTorqueVaultV1, parseToBigNumber, ROUND_NUMBER } from "../../utils";
-import { getTokenPrice } from ".";
+import { parseAddress, parseBigNumber, loadContractTorqueVaultV1, getTokenPrice } from "../../utils";
 
 // Get the users TVL for the vault
 export async function getUserVaultTVL(vault: string, wallet: string) {

@@ -1,5 +1,5 @@
 import { getTokenData } from "../../data";
-import { loadContractTorqueVaultV1, parseBigNumber, parseToBigNumber, ROUND_NUMBER } from "../../utils";
+import { loadContractTorqueVaultV1, parseAddress, parseBigNumber, parseToBigNumber, ROUND_NUMBER } from "../../utils";
 
 // Get a quote for the allocation of tokens off of a single allocation for the vault
 export async function getUserVaultQuote(vault: string, token: string, amount: number) {
@@ -21,7 +21,7 @@ export async function getUserVaultQuote(vault: string, token: string, amount: nu
     for (let i = 0; i < tokenCount; i++) {
         const _token = await contractVault.tokenByIndex(i);
 
-        if (_token != token) {
+        if (parseAddress(_token) != parseAddress(token)) {
             const _vaultBalance = await contractVault.approxBalance(_token);
 
             if (_vaultBalance.gt(0)) {

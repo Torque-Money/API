@@ -1,6 +1,7 @@
 import axios from "axios";
 
-import { BEEFY_API } from "../../utils";
+import { BEEFY_API } from ".";
+import { parseAddress } from "./Parse";
 
 const tokenData: { [key: string]: () => Promise<number> } = {
     "0x21be370d5312f44cb42ce377bc9b8a0cef1a4c83": async () => {
@@ -19,5 +20,5 @@ async function routeBeefyPrice(name: string) {
 }
 
 export async function getTokenPrice(token: string) {
-    return await tokenData[token]();
+    return await tokenData[parseAddress(token)]();
 }

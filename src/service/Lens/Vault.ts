@@ -1,5 +1,5 @@
 import { getStrategyAPY } from "./APY";
-import { getTokenPrice } from "./Prices";
+import { getTokenPrice } from "../../utils/Prices";
 import { getTokenData } from "../../data";
 import { parseAddress, parseBigNumber, loadContractTorqueVaultV1, ROUND_NUMBER } from "../../utils";
 
