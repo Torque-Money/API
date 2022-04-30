@@ -1,7 +1,15 @@
 import { Request, Response } from "express";
 
-import { getVaultAPY, getVaultFeePercent, getVaultTVL } from "../../service/Lens";
-import { parseAddress } from "../../utils";
+import { getVaultAPY, getVaultFeePercent, getVaultTokens, getVaultTVL } from "../../service/Lens";
+
+// Takes in the vault and returns the tokens the vault accepts
+export async function HandleVaultTokens(req: Request, res: Response) {
+    const vault = req.params.vault;
+
+    const tokens = await getVaultTokens(vault);
+
+    res.json({ tokens });
+}
 
 // Takes in the vault and returns the TVL for that vault
 export async function HandleVaultTVL(req: Request, res: Response) {

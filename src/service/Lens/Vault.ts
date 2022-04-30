@@ -3,6 +3,18 @@ import { getTokenPrice } from "../../utils/Prices";
 import { getTokenData } from "../../data";
 import { parseAddress, parseBigNumber, loadContractTorqueVaultV1, ROUND_NUMBER } from "../../utils";
 
+// Get the tokens that a particular vault accepts
+export async function getVaultTokens(vault: string) {
+    const contractVault = loadContractTorqueVaultV1(vault);
+
+    const tokenCount = (await contractVault.tokenCount()).toNumber();
+
+    const out = [];
+    for (let i = 0; i < tokenCount; i++) out.push(parseAddress(await contractVault.tokenByIndex(i)));
+
+    return out;
+}
+
 // Get the TVL of a particular vault
 export async function getVaultTVL(vault: string) {
     const contractVault = loadContractTorqueVaultV1(vault);
