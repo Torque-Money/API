@@ -46,3 +46,7 @@ const TokenData = {
 export function getTokenData(token: string) {
     return TokenData[token];
 }
+
+export function getAllTokens() {
+    return Object.keys(TokenData);
+}
