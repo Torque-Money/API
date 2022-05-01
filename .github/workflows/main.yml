@@ -18,6 +18,6 @@ jobs:
                   key: ${{secrets.SSH_KEY}}
                   script: |
                       cd API/
-                      docker-compose down
+                      bash scripts/stop.sh
                       git pull
-                      bash start.sh
+                      bash scripts/start.sh
