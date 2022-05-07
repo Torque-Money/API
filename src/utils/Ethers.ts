@@ -1,7 +1,7 @@
 import { ethers } from "ethers";
 
-import { ILensABI, IRegistryABI, IStrategyABI, ISupportsFeeABI, ISupportsTokenABI, IVaultABI } from "../../abi";
-import { ILens, IRegistry, IStrategy, ISupportsFee, ISupportsToken, IVault } from "../../types";
+import { ILensABI, IRegistryABI, IStrategyABI, ISupportsFeeABI, IVaultABI } from "../../abi";
+import { ILens, IRegistry, IStrategy, ISupportsFee, IVault } from "../../types";
 
 import { RPC_URL } from ".";
 
@@ -21,10 +21,6 @@ export function loadContractStrategy(address: string) {
 
 export function loadContractSupportsFee(address: string) {
     return new ethers.Contract(address, ISupportsFeeABI.abi, provider) as ISupportsFee;
-}
-
-export function loadContractSupportsToken(address: string) {
-    return new ethers.Contract(address, ISupportsTokenABI.abi, provider) as ISupportsToken;
 }
 
 export function loadContractVault(address: string) {

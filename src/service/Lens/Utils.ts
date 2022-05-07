@@ -1,9 +1,9 @@
 import { getTokenData } from "../../data";
-import { loadContractTorqueVaultV1, parseAddress, parseBigNumber, parseToBigNumber, ROUND_NUMBER } from "../../utils";
+import { loadContractVault, parseAddress, parseBigNumber, parseToBigNumber, ROUND_NUMBER } from "../../utils";
 
 // Get a quote for the allocation of tokens off of a single allocation for the vault
 export async function getUserVaultQuote(vault: string, token: string, amount: number) {
-    const contractVault = loadContractTorqueVaultV1(vault);
+    const contractVault = loadContractVault(vault);
 
     const tokenCount = (await contractVault.tokenCount()).toNumber();
     if (tokenCount < 2) throw new Error("Vault requires at least two tokens");

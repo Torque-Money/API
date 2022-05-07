@@ -1,11 +1,11 @@
-import { getStrategyAPY } from "./APY";
+import { getStrategyAPY } from ".";
 import { getTokenPrice } from "../../utils/Prices";
 import { getTokenData } from "../../data";
-import { parseAddress, parseBigNumber, loadContractTorqueVaultV1, ROUND_NUMBER } from "../../utils";
+import { loadContractSupportsFee, loadContractVault, parseAddress, parseBigNumber, ROUND_NUMBER } from "../../utils";
 
 // Get the tokens that a particular vault accepts
 export async function getVaultTokens(vault: string) {
-    const contractVault = loadContractTorqueVaultV1(vault);
+    const contractVault = loadContractVault(vault);
 
     const tokenCount = (await contractVault.tokenCount()).toNumber();
 
@@ -17,7 +17,7 @@ export async function getVaultTokens(vault: string) {
 
 // Get the TVL of a particular vault
 export async function getVaultTVL(vault: string) {
-    const contractVault = loadContractTorqueVaultV1(vault);
+    const contractVault = loadContractVault(vault);
 
     let tvl = 0;
 
@@ -39,7 +39,7 @@ export async function getVaultTVL(vault: string) {
 
 // Get the APY of a particular vault
 export async function getVaultAPY(vault: string) {
-    const contractVault = loadContractTorqueVaultV1(vault);
+    const contractVault = loadContractVault(vault);
 
     const strategy = parseAddress(await contractVault.getStrategy());
 
@@ -48,7 +48,7 @@ export async function getVaultAPY(vault: string) {
 
 // Get the fee for a particular vault
 export async function getVaultFeePercent(vault: string) {
-    const contractVault = loadContractTorqueVaultV1(vault);
+    const contractVault = loadContractSupportsFee(vault);
 
     let [percent, denominator] = await contractVault.feePercent();
 
