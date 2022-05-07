@@ -3,7 +3,7 @@ import { ethers } from "ethers";
 import { ILensABI, IRegistryABI, IStrategyABI, ISupportsFeeABI, ISupportsTokenABI, IVaultABI } from "../../abi";
 import { ILens, IRegistry, IStrategy, ISupportsFee, ISupportsToken, IVault } from "../../types";
 
-const RPC_URL = "https://rpc.ftm.tools/";
+import { RPC_URL } from ".";
 
 export const provider = new ethers.providers.JsonRpcProvider(RPC_URL);
 
