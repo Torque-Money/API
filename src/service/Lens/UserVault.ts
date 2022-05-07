@@ -1,9 +1,9 @@
 import { getTokenData } from "../../data";
-import { parseAddress, parseBigNumber, loadContractTorqueVaultV1, getTokenPrice } from "../../utils";
+import { parseAddress, parseBigNumber, getTokenPrice, loadContractVault } from "../../utils";
 
 // Get the users TVL for the vault
 export async function getUserVaultTVL(vault: string, wallet: string) {
-    const contractVault = loadContractTorqueVaultV1(vault);
+    const contractVault = loadContractVault(vault);
 
     let tvl = 0;
 
@@ -27,7 +27,7 @@ export async function getUserVaultTVL(vault: string, wallet: string) {
 
 // Get the users balance for the vault
 export async function getUserVaultBalance(vault: string, wallet: string) {
-    const contractVault = loadContractTorqueVaultV1(vault);
+    const contractVault = loadContractVault(vault);
 
     const shares = await contractVault.balanceOf(wallet);
     let emptyFlag = false;
