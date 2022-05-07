@@ -1,16 +1,32 @@
 import { ethers } from "ethers";
 
-import {} from "../../abi";
-import {} from "../../types";
+import { ILensABI, IRegistryABI, IStrategyABI, ISupportsFeeABI, ISupportsTokenABI, IVaultABI } from "../../abi";
+import { ILens, IRegistry, IStrategy, ISupportsFee, ISupportsToken, IVault } from "../../types";
 
 const RPC_URL = "https://rpc.ftm.tools/";
 
 export const provider = new ethers.providers.JsonRpcProvider(RPC_URL);
 
-export function loadContractTorqueVaultV1(vault: string) {
-    return new ethers.Contract(vault, TorqueVaultV1ABI.abi, provider);
+export function loadContractLens(address: string) {
+    return new ethers.Contract(address, ILensABI.abi, provider) as ILens;
 }
 
-export function loadContractBeefyLPStrategy(strategy: string) {
-    return new ethers.Contract(strategy, BeefyLPStrategyABI.abi, provider);
+export function loadContractRegistry(address: string) {
+    return new ethers.Contract(address, IRegistryABI.abi, provider) as IRegistry;
+}
+
+export function loadContractStrategy(address: string) {
+    return new ethers.Contract(address, IStrategyABI.abi, provider) as IStrategy;
+}
+
+export function loadContractSupportsFee(address: string) {
+    return new ethers.Contract(address, ISupportsFeeABI.abi, provider) as ISupportsFee;
+}
+
+export function loadContractSupportsToken(address: string) {
+    return new ethers.Contract(address, ISupportsTokenABI.abi, provider) as ISupportsToken;
+}
+
+export function loadContractVault(address: string) {
+    return new ethers.Contract(address, IVaultABI.abi, provider) as IVault;
 }
