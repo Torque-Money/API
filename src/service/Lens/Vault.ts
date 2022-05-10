@@ -56,3 +56,22 @@ export async function getVaultFeePercent(vault: string) {
 
     return fee.toNumber() / ROUND_NUMBER;
 }
+
+// Get the total asset balance locked in the vault
+export async function getVaultBalance(vault: string) {
+    const contractVault = loadContractVault(vault);
+
+    const tokenCount = (await contractVault.tokenCount()).toNumber();
+
+    const amounts: { [key: string]: number } = {};
+    for (let i = 0; i < tokenCount; i++) {
+        const token = parseAddress(await contractVault.tokenByIndex(i));
+        const amount = await contractVault.approxBalance(token);
+
+        const decimals = getTokenData(token).decimals;
+
+        amounts[token] = parseBigNumber(amount, decimals);
+    }
+
+    return amounts;
+}
