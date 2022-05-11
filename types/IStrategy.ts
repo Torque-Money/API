@@ -130,9 +130,9 @@ export interface IStrategy extends BaseContract {
 
         tokenCount(overrides?: CallOverrides): Promise<BigNumber>;
 
-        withdraw(amount: BigNumberish[], overrides?: CallOverrides): Promise<void>;
+        withdraw(amount: BigNumberish[], overrides?: CallOverrides): Promise<BigNumber[]>;
 
-        withdrawAll(overrides?: CallOverrides): Promise<void>;
+        withdrawAll(overrides?: CallOverrides): Promise<BigNumber[]>;
     };
 
     filters: {};

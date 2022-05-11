@@ -121,14 +121,26 @@
         }
       ],
       "name": "withdraw",
-      "outputs": [],
+      "outputs": [
+        {
+          "internalType": "uint256[]",
+          "name": "actual",
+          "type": "uint256[]"
+        }
+      ],
       "stateMutability": "nonpayable",
       "type": "function"
     },
     {
       "inputs": [],
       "name": "withdrawAll",
-      "outputs": [],
+      "outputs": [
+        {
+          "internalType": "uint256[]",
+          "name": "actual",
+          "type": "uint256[]"
+        }
+      ],
       "stateMutability": "nonpayable",
       "type": "function"
     }
