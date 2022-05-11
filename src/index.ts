@@ -1,11 +1,8 @@
 import express from "express";
 import cors from "cors";
-import dotenv from "dotenv";
 
 import Lens from "./routes/Lens";
 import Utils from "./routes/Utils";
-
-dotenv.config();
 
 const app = express();
 
