@@ -1,7 +1,7 @@
 import { ethers } from "ethers";
 
-import { ILensABI, IStrategyABI, ISupportsFeeABI, IVaultABI } from "../../abi";
-import { ILens, IStrategy, ISupportsFee, IVault } from "../../types";
+import { ILensABI, ISupportsFeeABI, IVaultABI } from "../../abi";
+import { ILens, ISupportsFee, IVault } from "../../types";
 
 import { RPC_URL } from ".";
 
@@ -9,10 +9,6 @@ export const provider = new ethers.providers.JsonRpcProvider(RPC_URL);
 
 export function loadContractLens(address: string) {
     return new ethers.Contract(address, ILensABI.abi, provider) as ILens;
-}
-
-export function loadContractStrategy(address: string) {
-    return new ethers.Contract(address, IStrategyABI.abi, provider) as IStrategy;
 }
 
 export function loadContractSupportsFee(address: string) {
